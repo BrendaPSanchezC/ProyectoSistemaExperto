@@ -390,9 +390,26 @@ class ventanaExperto:
 		for frame in frames:
 				lbl_explicacion = tk.Label(frame, text="Explicacion: ", font=("arial",16), background="white")
 				lbl_explicacion.grid(row=0, column=3)
+    
+				exp_txt = self.tratar_explicacion(frame.explicacion, 100)
 
-				lbl_explicacion = tk.Label(frame, text=frame.explicacion, font=("arial",11), background="white")
+				lbl_explicacion = tk.Label(frame, text=exp_txt, font=("arial",11), background="white")
 				lbl_explicacion.grid(row=1, column=3, rowspan=3)
+    
+	def tratar_explicacion(self, texto, tamano_linea):
+		palabras = texto.split()
+		lineas = []
+		linea_actual = palabras[0]
+
+		for palabra in palabras[1:]:
+			if len(linea_actual) + len(palabra) + 1 <= tamano_linea:
+				linea_actual += " " + palabra
+			else:
+				lineas.append(linea_actual)
+				linea_actual = palabra
+
+		lineas.append(linea_actual)
+		return "\n".join(lineas)
 
 	def cerrar_ventana(ventana):
 		ventana.destroy()
