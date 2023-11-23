@@ -3,7 +3,7 @@ import mysql.connector
 #conexión con la base de datos
 acceso_bd = {"host" : "localhost",
             "user" : "root",
-            "password" : "brenda9",
+            "password" : "Huevos12",
             "database" : "Flores",
             "port" : "3306"
             }

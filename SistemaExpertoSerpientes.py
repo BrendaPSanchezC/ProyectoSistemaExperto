@@ -420,7 +420,7 @@ class ventanaExperto:
 		wtotal = ventana.winfo_screenwidth()
 		htotal = ventana.winfo_screenheight()
 
-		wventana = 770
+		wventana = 550
 		hventana = 540
 
 		pwidth = round(wtotal/2-wventana/2)
@@ -437,12 +437,12 @@ class ventanaExperto:
 		for i, pregunta in enumerate(preguntas):
 
 			pregunta = tk.Label(ventana, text=pregunta, font=("Open Sans",16), background="#c3badd")
-			pregunta.grid(row=i+1, column=0, sticky=tk.W, padx=17, pady=15)
+			pregunta.grid(row=(i*2)+1, column=0, padx=17, pady=15)
 
 			opcionesA = self.opciones[i]
 			respuesta_dropdown = ttk.Combobox(ventana, values=opcionesA, state="readonly", background="#58a292", font=("arial",16))
 			dropdowns.append(respuesta_dropdown)
-			respuesta_dropdown.grid(row=i+1, column=1, padx=24, )
+			respuesta_dropdown.grid(row=(i*2)+2, column=0, padx=24)
 
 		frame_buttons = tk.Frame(ventana, background="black")
 		frame_buttons.grid(row=12,column=0, columnspan=3, pady=30)
