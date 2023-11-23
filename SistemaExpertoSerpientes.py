@@ -49,34 +49,30 @@ class ventanaExperto:
 					i+=1
 	print("Numero total de combinaciones: " + str(i))
 
+
+	#print("Array de flores: ")
 	j=0
 	for flor in flores:
+		#print(flor)
 		for combinacion in combinaciones:
 			if((flor[1] == combinacion[0]) & (flor[2] == combinacion[1]) & (flor[3] == combinacion[2]) & (flor[4] == combinacion[3])):
 				combinacion[4]+=1
 				#print(combinacion)
 				j+=1
-	print(j)
-	print("Combinaciones ocupadas: ")
+	print("Combinaciones ocupadas: " + str(j) + " =====================================================================")
 	for combinacion in combinaciones:
 		if (combinacion[4]>0):
 			print (combinacion)
-
+	print("=====================================================================")
+ 
 	k=0
-	print("Combinaciones faltantes: ")
+	print("Combinaciones faltantes: " + str(i-j) + " =====================================================================")
 	for combinacion in combinaciones:
 		if (combinacion[4]==0):
 			print (combinacion)
 			k+=1
-			if(k==34):
-				print("Separador: \n")
-			if(k==68):
-				print("Separador: \n")
-			if(k==102):
-				print("Separador: \n")
-			
+	print("=====================================================================")
 	print(k)
-
 	#Arbol de verificacion################################################################################
 
 	def getOpciones(self):
@@ -260,8 +256,8 @@ class ventanaExperto:
 		wtotal = ventana.winfo_screenwidth()
 		htotal = ventana.winfo_screenheight()
 
-		wventana = 900
-		hventana = 685
+		wventana = 700
+		hventana = 655
 
 		pwidth = round(wtotal/2-wventana/2)
 		pheight = round(htotal/2-hventana/2)
@@ -272,32 +268,32 @@ class ventanaExperto:
 		bg_lbl = tk.Label(ventana, image=bg).place(x=-2, y=0)
 
 		label_titulo = tk.Label(ventana, text="Seleccione las caracteristicas del Evento", font=("arial",20), background="#51524a", foreground="white")
-		label_titulo.grid(row=0, column=0, pady=20, padx=10, columnspan=3)
+		label_titulo.grid(row=0, column=0, pady=20, padx=10, columnspan=2)
 
 		nombre = tk.Label(ventana, text="Nombre: ", font=("arial",16), background="#265046", foreground="white")
-		nombre.grid(row=1, column=0, sticky=tk.W, padx=20)
+		nombre.grid(row=1, column=0, padx=20)
 
 		nombreE = tk.Entry(ventana, font=("arial",16), background="white")
-		nombreE.grid(row=1,column=1)
+		nombreE.grid(row=2,column=0)
 
 		for i, pregunta in enumerate(preguntase):
 
 			pregunta = tk.Label(ventana, text=pregunta, font=("arial",16), background="#265046", foreground="white")
-			pregunta.grid(row=i+2, column=0, sticky=tk.W, padx=15, pady=0)
+			pregunta.grid(row=(i*2)+3, column=0, padx=15, pady=0)
 
 			opcionesA = self.opciones[i]
 			respuesta_dropdown = ttk.Combobox(ventana, values=opcionesA, state="readonly", background="white", font=("arial",16))
 			dropdowns.append(respuesta_dropdown)
-			respuesta_dropdown.grid(row=i+2, column=1, padx=20)
+			respuesta_dropdown.grid(row=(i*2)+4, column=0, padx=20)
 
 		explicacion_lbl = tk.Label(ventana, text="Explicacion: ", font=("arial",16), background="#265046", foreground="white")
-		explicacion_lbl.grid(row=10, column=0, sticky=tk.N+tk.W+tk.S, padx=20, pady=15,rowspan=2)
+		explicacion_lbl.grid(row=12, column=0, padx=20, pady=15, rowspan=2)
 
-		explicacion_e = tk.Text(ventana, font=("arial",16), background="white", height=3, width=50)
-		explicacion_e.grid(row=10,column=1, padx=10, pady=15, rowspan=1, columnspan=2)
+		explicacion_e = tk.Text(ventana, font=("arial",16), background="white", height=3, width=30)
+		explicacion_e.grid(row=12,column=1, padx=10, pady=15, rowspan=1, columnspan=1)
 
 		frame_buttons = tk.Frame(ventana, background="#265046")
-		frame_buttons.grid(row=12,column=0, columnspan=5, pady=00)
+		frame_buttons.grid(row=14,column=0, columnspan=3, pady=0)
 
 		ingresar_button = tk.Button(frame_buttons, text="Ingresar", command=lambda: self.insertar_ramo(nombreE.get(), dropdowns, explicacion_e.get("1.0", "end-1c")), font=("arial",16), border=0)
 		ingresar_button.grid(row=0, column=0, pady=10, padx=5)
@@ -312,12 +308,12 @@ class ventanaExperto:
 		agcat_button.grid(row=0, column=3, padx=5)
 
 		label_img = tk.Label(ventana, text="Imagen:", font=("arial",18), background="black", foreground="white")
-		label_img.grid(row=1, column=2, pady=12, padx=10)
+		label_img.grid(row=1, column=1, pady=12, padx=10)
 
 		img =tk.PhotoImage(file="Imagenes/Default.png")
 
 		lbl_img = tk.Label(ventana, image=img)
-		lbl_img.grid(row=2, column=2, rowspan=4, padx=13, pady=25)
+		lbl_img.grid(row=2, column=1, rowspan=8, padx=13, pady=25)
 
 		self.vActual = ventana
 
