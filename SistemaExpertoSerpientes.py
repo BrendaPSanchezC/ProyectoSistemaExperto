@@ -34,30 +34,25 @@ class ventanaExperto:
 
 	#Arbol de verificacion################################################################################
 	eventos = base_temp.getEvento()
-	temporada = base_temp.getTemporada()
-	horario = base_temp.getHorario()
-	tema = base_temp.getTema()
+	temporadas = base_temp.getTemporada()
+	horarios = base_temp.getHorario()
+	temas = base_temp.getTema()
 	combinaciones = []
 	flores = base_temp.getFlores()
 	i = 0
 	for evento in eventos:
-		for temporada in temporada:
-			for horario in horario:
-				for tema in tema:
+		for temporada in temporadas:
+			for tema in temas:
+				for horario in horarios:
 					#print(patron, color, cabeza, cuerpo)
-					combinaciones.append([evento, temporada, horario, tema, 0])
+					combinaciones.append([evento, temporada, tema, horario, 0])
 					i+=1
-
-	print(i)
-	x=0
-	for num in range(6):
-		print(num)
-		x+=1
+	print("Numero total de combinaciones: " + str(i))
 
 	j=0
-	for flores in flores:
+	for flor in flores:
 		for combinacion in combinaciones:
-			if((flores[1] == combinacion[0]) & (flores[2] == combinacion[1]) & (flores[3] == combinacion[2]) & (flores[4] == combinacion[3])):
+			if((flor[1] == combinacion[0]) & (flor[2] == combinacion[1]) & (flor[3] == combinacion[2]) & (flor[4] == combinacion[3])):
 				combinacion[4]+=1
 				#print(combinacion)
 				j+=1
